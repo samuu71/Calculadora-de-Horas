@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de Horas Trabalhadas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⏰ Calculadora de Horas Trabalhadas</h1>
+      <p class="subtitle">Controle seu banco de horas facilmente</p>
+    </header>
+    <form id="formHoras">
+      <div class="input-group">
+        <label for="data">📅 Data</label>
+        <input type="date" id="data" name="data" />
+      </div>
+      <div class="input-group">
+        <label for="entrada">⏰ Entrada</label>
+        <input type="time" id="entrada" name="entrada" />
+      </div>
+      <div class="input-group">
+        <label for="saidaAlmoco">🍽️ Saída para Almoço</label>
+        <input type="time" id="saidaAlmoco" name="saidaAlmoco" />
+      </div>
+      <div class="input-group">
+        <label for="retornoAlmoco">🍽️ Retorno do Almoço</label>
+        <input type="time" id="retornoAlmoco" name="retornoAlmoco" />
+      </div>
+      <div class="input-group">
+        <label for="saida">🚪 Saída</label>
+        <input type="time" id="saida" name="saida" />
+      </div>
+      <div class="input-group">
+        <label for="jornada">⏳ Jornada padrão (horas)</label>
+        <input type="number" id="jornada" name="jornada" value="8" min="1" />
+      </div>
+      <button type="submit" class="btn-primary">Calcular</button>
+    </form>
+    <div class="card" id="resultado">Preencha os dados e clique em Calcular</div>
+    <section class="historico-section">
+      <h2>📚 Histórico</h2>
+      <div id="historico">Nenhum registro salvo.</div>
+      <button id="btnLimpar" class="btn-danger">Limpar Histórico</button>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
