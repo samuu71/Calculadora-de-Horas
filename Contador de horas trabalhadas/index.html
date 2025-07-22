@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Gastos - Multiusuário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+    }
+    .hidden {
+      display: none;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .gasto {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cadastro -->
+  <div id="cadastroSection" class="card">
+    <h2>Criar Conta</h2>
+    <input type="text" id="novoUsuario" placeholder="Usuário">
+    <input type="password" id="novaSenha" placeholder="Senha">
+    <button onclick="cadastrarUsuario()">Cadastrar</button>
+    <p id="mensagemCadastro" style="color: green;"></p>
+    <button onclick="mostrarLogin()">Já tenho conta</button>
+  </div>
+
+  <!-- Login -->
+  <div id="loginSection" class="card hidden">
+    <h2>Login</h2>
+    <input type="text" id="usuario" placeholder="Usuário">
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="fazerLogin()">Entrar</button>
+    <p id="erroLogin" style="color: red;"></p>
+    <button onclick="mostrarCadastro()">Criar nova conta</button>
+  </div>
+
+  <!-- Painel de Gastos -->
+  <div id="gastosSection" class="card hidden">
+    <h2>Olá, <span id="usuarioLogado"></span>!</h2>
+    <input type="text" id="descricao" placeholder="Descrição">
+    <input type="number" id="valor" placeholder="Valor (R$)">
+    <button onclick="adicionarGasto()">Adicionar Gasto</button>
+
+    <h3>Seus Gastos</h3>
+    <div id="listaGastos"></div>
+
+    <h3>Total: R$ <span id="total">0.00</span></h3>
+    <button onclick="fazerLogout()">Sair</button>
+  </div>
+
+  <script>
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
+    let usuarioAtual = null;
+
+    function cadastrarUsuario() {
+      const user = document.getElementById("novoUsuario").value;
+      const pass = document.getElementById("novaSenha").value;
+
+      if (!user || !pass) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      if (usuarios[user]) {
+        alert("Usuário já existe.");
+        return;
+      }
+
+      usuarios[user] = { senha: pass, gastos: [] };
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      document.getElementById("mensagemCadastro").innerText = "Usuário criado com sucesso!";
+      document.getElementById("novoUsuario").value = "";
+      document.getElementById("novaSenha").value = "";
+    }
+
+    function mostrarLogin() {
+      document.getElementById("cadastroSection").classList.add("hidden");
+      document.getElementById("loginSection").classList.remove("hidden");
+    }
+
+    function mostrarCadastro() {
+      document.getElementById("loginSection").classList.add("hidden");
+      document.getElementById("cadastroSection").classList.remove("hidden");
+    }
+
+    function fazerLogin() {
+      const user = document.getElementById("usuario").value;
+      const pass = document.getElementById("senha").value;
+
+      if (usuarios[user] && usuarios[user].senha === pass) {
+        usuarioAtual = user;
+        document.getElementById("usuarioLogado").innerText = user;
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("gastosSection").classList.remove("hidden");
+        atualizarGastos();
+      } else {
+        document.getElementById("erroLogin").innerText = "Usuário ou senha incorretos.";
+      }
+    }
+
+    function adicionarGasto() {
+      const descricao = document.getElementById("descricao").value;
+      const valor = parseFloat(document.getElementById("valor").value);
+
+      if (!descricao || isNaN(valor) || valor <= 0) {
+        alert("Preencha os campos corretamente.");
+        return;
+      }
+
+      usuarios[usuarioAtual].gastos.push({ descricao, valor });
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      document.getElementById("descricao").value = "";
+      document.getElementById("valor").value = "";
+      atualizarGastos();
+    }
+
+    function atualizarGastos() {
+      const lista = document.getElementById("listaGastos");
+      const totalSpan = document.getElementById("total");
+      lista.innerHTML = "";
+      const gastos = usuarios[usuarioAtual].gastos;
+      let total = 0;
+
+      gastos.forEach((gasto, i) => {
+        lista.innerHTML += `<div class="gasto">#${i + 1} - ${gasto.descricao}: R$ ${gasto.valor.toFixed(2)}</div>`;
+        total += gasto.valor;
+      });
+
+      totalSpan.innerText = total.toFixed(2);
+    }
+
+    function fazerLogout() {
+      usuarioAtual = null;
+      document.getElementById("gastosSection").classList.add("hidden");
+      document.getElementById("loginSection").classList.remove("hidden");
+      document.getElementById("usuario").value = "";
+      document.getElementById("senha").value = "";
+      document.getElementById("erroLogin").innerText = "";
+    }
+  </script>
+</body>
+</html>
