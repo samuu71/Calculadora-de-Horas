@@ -8,13 +8,11 @@
 }
 
 html, body {
-  height: 100%;
-  background-color: #0f111a !important;
+  min-height: 100vh;
+  background-color: #0f111a;
   color: #e0e0e0;
   padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,12 +27,12 @@ body {
   border-radius: 24px;
   width: 100%;
   max-width: 500px;
+  margin: 0 auto;
   box-shadow:
     5px 5px 15px #0b0d17,
     -5px -5px 15px #22243b;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 header {
@@ -61,7 +59,7 @@ header h1 {
 form {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 22px 18px;
   margin-bottom: 36px;
 }
