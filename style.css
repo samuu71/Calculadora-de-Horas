@@ -9,20 +9,19 @@
 
 html, body {
   height: 100%;
-  min-height: 100vh;
   background-color: #0f111a;
   color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
-  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: start;
   user-select: none;
+  overflow-x: hidden;
 }
 
 .container {
@@ -206,43 +205,30 @@ form button.btn-primary:hover {
   box-shadow: 0 14px 28px #cc3b3b;
 }
 
-@media (max-width: 600px) {
-  .container {
-    padding: 28px 20px;
-    border-radius: 16px;
-  }
-
+@media (max-width: 520px) {
   form {
     grid-template-columns: 1fr !important;
   }
 
+  .container {
+    padding: 36px 28px;
+  }
+
   header h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 
   .subtitle {
-    font-size: 1rem;
-  }
-
-  .card {
-    font-size: 1.1rem;
-    padding: 20px;
+    font-size: 1.05rem;
   }
 
   .historico-section h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   form button.btn-primary,
   .btn-danger {
     font-size: 1rem;
     padding: 14px 0;
-  }
-
-  input[type="time"],
-  input[type="number"],
-  input[type="date"] {
-    padding: 12px 14px;
-    font-size: 0.95rem;
   }
 }
