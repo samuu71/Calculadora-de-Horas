@@ -1,18 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
 
 * {
-  margin: 0; padding: 0; box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
 
 html, body {
   height: 100%;
-  background-color: #0f111a;
+  background-color: #0f111a !important;
   color: #e0e0e0;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -115,14 +117,12 @@ form button.btn-primary {
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   user-select: none;
-  box-shadow:
-    0 10px 20px rgba(127, 143, 255, 0.5);
+  box-shadow: 0 10px 20px rgba(127, 143, 255, 0.5);
 }
 
 form button.btn-primary:hover {
   background-color: #5f6fe6;
-  box-shadow:
-    0 14px 28px rgba(95, 111, 230, 0.7);
+  box-shadow: 0 14px 28px rgba(95, 111, 230, 0.7);
 }
 
 .card {
