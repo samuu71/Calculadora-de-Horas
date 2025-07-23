@@ -1,33 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
-
-html, body {
-  height: 100%;
-  background-color: #0f111a !important;
-  color: #e0e0e0;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-body {
-  user-select: none;
-}
-
-/* ... (todo o restante do seu CSS permanece igual) */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; padding: 0; box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
 
@@ -35,17 +9,16 @@ html, body {
   height: 100%;
   background-color: #0f111a;
   color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: start;
   user-select: none;
-  overflow-x: hidden;
 }
 
 .container {
@@ -86,7 +59,7 @@ header h1 {
 form {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
   gap: 22px 18px;
   margin-bottom: 36px;
 }
@@ -242,10 +215,6 @@ form button.btn-primary:hover {
     font-size: 2.2rem;
   }
 
-  .subtitle {
-    font-size: 1.05rem;
-  }
-
   .historico-section h2 {
     font-size: 1.3rem;
   }
@@ -253,6 +222,5 @@ form button.btn-primary:hover {
   form button.btn-primary,
   .btn-danger {
     font-size: 1rem;
-    padding: 14px 0;
   }
 }
